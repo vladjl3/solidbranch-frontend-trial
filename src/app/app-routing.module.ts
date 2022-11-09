@@ -8,7 +8,8 @@ const routes: Routes = [
   },
   {
     path: "navigator",
-    loadChildren: () => import("./pages/navigator/navigator.module").then((m) => m.NavigatorModule),
+    loadChildren: () =>
+      import("./pages/navigator-page/navigator-page.module").then((m) => m.NavigatorPageModule),
   },
 ];
 
