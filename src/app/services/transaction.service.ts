@@ -1,7 +1,14 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { catchError, Observable, of, tap } from "rxjs";
+import { catchError, map, Observable, of } from "rxjs";
 import { Transaction } from "../types/transaction.interface";
+
+export enum TransactionTypes {
+  INCOME = "income",
+  OUTCOME = "outcome",
+  LOAN = "loan",
+  INVESTMENT = "investment",
+}
 
 @Injectable({
   providedIn: "root",
@@ -11,9 +18,14 @@ export class TransactionService {
 
   TRANSACTIONS_URL = "api/transactions";
 
-  public getTransactions(): Observable<Transaction[]> {
+  public getTransactions(type: string): Observable<Transaction[]> {
+    let url = this.TRANSACTIONS_URL;
+    if (type !== "all") {
+      url = `${this.TRANSACTIONS_URL}?type=${type}`;
+    }
+    console.log(url);
     return this.http
-      .get<Transaction[]>(this.TRANSACTIONS_URL)
+      .get<Transaction[]>(url)
       .pipe(catchError(this.handleError<Transaction[]>("getTransactions", [])));
   }
 
