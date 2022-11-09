@@ -38,7 +38,6 @@ export class NavigatorPageComponent implements OnInit, OnDestroy {
   private initializeListeners(): void {
     this.queryParamsSubscription = this.route.queryParams.subscribe((params: Params) => {
       this.currentTab = Number(params["tab"] || "0");
-      console.log("currentTab", this.currentTab);
       this.fetchTransactions(this.tabs[this.currentTab].type);
     });
   }
@@ -48,7 +47,6 @@ export class NavigatorPageComponent implements OnInit, OnDestroy {
       .getTransactions(type)
       .subscribe((transactions) => {
         this.transactions = transactions;
-        transactions.forEach((item) => console.log("transaction", item.type));
       });
   }
 }

@@ -24,7 +24,6 @@ export class TransactionService {
     if (type !== "all") {
       url = `${this.TRANSACTIONS_URL}?type=${type}`;
     }
-    console.log(url);
     return this.http
       .get<Transaction[]>(url)
       .pipe(catchError(this.handleError<Transaction[]>("getTransactions", [])));
