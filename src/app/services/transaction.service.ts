@@ -4,6 +4,7 @@ import { catchError, map, Observable, of } from "rxjs";
 import { Transaction } from "../types/transaction.interface";
 
 export enum TransactionTypes {
+  ALL = "all",
   INCOME = "income",
   OUTCOME = "outcome",
   LOAN = "loan",
