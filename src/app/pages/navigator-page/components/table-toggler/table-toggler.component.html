@@ -1,0 +1,11 @@
+<ul class="nav nav-tabs">
+  <li class="nav-item" *ngFor="let tab of tabsProps">
+    <a
+      [routerLink]="[tab.link]"
+      [queryParams]="{ tab: tab.index }"
+      [routerLinkActive]="['active']"
+      class="nav-link"
+      >{{ tab.title }}</a
+    >
+  </li>
+</ul>
